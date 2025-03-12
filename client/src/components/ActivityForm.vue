@@ -79,7 +79,7 @@ const resetForm = () => {
 
 <style scoped>
 .box {
-  max-width: 600px;
+  max-width: 400px;
   margin: 0 auto;
 }
 </style>

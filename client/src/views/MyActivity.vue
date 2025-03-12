@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import ActivityForm from '@/components/ActivityForm.vue'
-
-const handleActivitySaved = (activityData) => {
-  console.log('Activity submitted:', activityData)
-}
+import { ref } from 'vue'
+import ActivityManager from '../components/ActivityManager.vue'
 </script>
 
 <template>
   <main>
-    <ActivityForm @activity-saved="handleActivitySaved" />
+    <h1 class="title">My Activities</h1>
+    <ActivityManager />
   </main>
 </template>
+
+<style scoped></style>
