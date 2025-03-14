@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, defineEmits } from 'vue'
-const emit = defineEmits(['activity-saved'])
+import { ref, defineEmits, defineProps } from 'vue'
+const emit = defineEmits(['activity-saved', 'cancel'])
+const props = defineProps<{ showForm: boolean }>()
 
 const title = ref('')
 const date = ref(new Date().toISOString().split('T')[0])
@@ -26,59 +27,67 @@ const resetForm = () => {
   location.value = ''
   type.value = ''
 }
+
+const cancelForm = () => {
+  emit('cancel')
+  resetForm()
+}
 </script>
 
 <template>
-  <div class="box">
-    <header class="form-header">Add an Exercise</header>
-    <div class="field">
-      <label class="label">Title</label>
-      <div class="control">
-        <input v-model="title" class="input" type="text" />
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Date</label>
-      <div class="control">
-        <input v-model="date" class="input" type="date" />
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Duration</label>
-      <div class="control">
-        <input v-model="duration" class="input" type="text" />
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Location</label>
-      <div class="control">
-        <input v-model="location" class="input" type="text" />
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Type</label>
-      <div class="control">
-        <div class="select is-fullwidth">
-          <select v-model="type">
-            <option value="running">Running</option>
-            <option value="cycling">Cycling</option>
-            <option value="swimming">Swimming</option>
-            <option value="hiking">Hiking</option>
-            <option value="strength">Strength</option>
-            <option value="cardio">Cardio</option>
-          </select>
+  <div v-if="props.showForm" class="modal is-active" @click.self="cancelForm">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <header class="form-header">Add an Exercise</header>
+      <div class="field">
+        <label class="label">Title</label>
+        <div class="control">
+          <input v-model="title" class="input" type="text" />
         </div>
       </div>
+      <div class="field">
+        <label class="label">Date</label>
+        <div class="control">
+          <input v-model="date" class="input" type="date" />
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Duration</label>
+        <div class="control">
+          <input v-model="duration" class="input" type="text" />
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Location</label>
+        <div class="control">
+          <input v-model="location" class="input" type="text" />
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Type</label>
+        <div class="control">
+          <div class="select is-fullwidth">
+            <select v-model="type">
+              <option value="Running">Running</option>
+              <option value="Cycling">Cycling</option>
+              <option value="Swimming">Swimming</option>
+              <option value="Hiking">Hiking</option>
+              <option value="Strength">Strength</option>
+              <option value="Cardio">Cardio</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <footer class="form-footer">
+        <button @click="submitActivity" class="button is-primary">Save</button>
+        <button @click="cancelForm" class="button">Cancel</button>
+      </footer>
     </div>
-    <footer class="form-footer">
-      <button @click="submitActivity" class="button is-primary">Save</button>
-      <button class="button">Cancel</button>
-    </footer>
   </div>
 </template>
 
 <style scoped>
-.box {
+.modal-form {
   max-width: 400px;
   margin: 0 auto;
 }
