@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import ActivityManager from '@/components/ActivityManager.vue'
+import { useActivityStore } from '../models/useActivityStore'
+import ActivityManager from '../components/ActivityManager.vue'
+
+const { activities } = useActivityStore() // Use global activity list
 </script>
 
 <template>
-  <div>
-    <h1 class="title">Friend Activity</h1>
-  </div>
+  <main>
+    <h1 class="title">Friend Activities</h1>
+    <ActivityManager :activities="activities" :filterByUser="false" />
+  </main>
 </template>
-
-<style scoped></style>

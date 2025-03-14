@@ -6,7 +6,7 @@ import ActivityList from './ActivityList.vue'
 const showForm = ref(false)
 
 const props = defineProps<{
-  userId: string | null
+  userId?: string | null
   activities: Array<{
     id: number
     title: string
@@ -16,26 +16,20 @@ const props = defineProps<{
     type: string
     userId: string
   }>
+  addActivity?: (activity: any) => void
+  filterByUser?: boolean
 }>()
 
-console.log('props.userId:', props.userId)
-console.log('props.activities:', props.activities)
-
-const activities = ref([...props.activities])
-
-const userActivities = computed(() => {
-  const filteredActivities = activities.value.filter((activity) => activity.userId === props.userId)
-  console.log('filteredActivities:', filteredActivities)
-  return filteredActivities
+const displayedActivities = computed(() => {
+  if (!props.filterByUser) return props.activities // Show all activities
+  return props.activities.filter((activity) => activity.userId === props.userId)
 })
 
 const addActivity = (activity) => {
-  activity.userId = props.userId // Ensure the new activity has the correct userId
-  activities.value.push(activity)
-  showForm.value = false
-}
-
-const closeForm = () => {
+  if (props.addActivity) {
+    activity.userId = props.userId // Ensure correct user
+    props.addActivity(activity)
+  }
   showForm.value = false
 }
 </script>
@@ -47,10 +41,9 @@ const closeForm = () => {
       v-if="showForm"
       :showForm="showForm"
       @activity-saved="addActivity"
-      @cancel="closeForm"
+      @cancel="showForm = false"
     />
-    <ActivityList :activities="userActivities" />
+    <ActivityList v-if="displayedActivities.length > 0" :activities="displayedActivities" />
+    <p v-else>No activities found.</p>
   </div>
 </template>
-
-<style scoped></style>
