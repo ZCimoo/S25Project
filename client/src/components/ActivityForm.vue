@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, defineEmits, defineProps } from 'vue'
+import { addNotification } from '@/models/notifications'
 const emit = defineEmits(['activity-saved', 'cancel'])
 const props = defineProps<{ showForm: boolean }>()
 
@@ -16,6 +17,10 @@ const submitActivity = () => {
     duration: duration.value,
     location: location.value,
     type: type.value,
+  })
+  addNotification({
+    type: 'success',
+    message: 'Activity added successfully!',
   })
   resetForm()
 }

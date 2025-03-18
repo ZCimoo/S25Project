@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useUserSwitching } from '../models/useUserSwitching'
 import ActivityManager from '../components/ActivityManager.vue'
+import NotificationList from '@/components/NotificationList.vue'
 
 const { userId, isLoggedIn, username } = useUserSwitching()
 </script>
@@ -8,6 +9,7 @@ const { userId, isLoggedIn, username } = useUserSwitching()
 <template>
   <main v-if="isLoggedIn">
     <h1 class="title">My Activities</h1>
+    <NotificationList />
     <ActivityManager :userId="userId" :username="username" />
   </main>
   <main v-else>
