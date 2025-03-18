@@ -1,20 +1,22 @@
 import { ref, computed, watchEffect } from 'vue'
 
 const users = ref([
-  { username: 'Zachary', password: 'password1', userId: '1', role: 'admin' },
-  { username: 'Kamala Harris', password: 'password2', userId: '2', role: 'user' },
-  { username: 'John Smith', password: 'password3', userId: '3', role: 'user' },
+  { username: 'Zachary', password: 'password1', userId: 'zcimo', role: 'admin' },
+  { username: 'Kamala Harris', password: 'password2', userId: 'vp', role: 'user' },
+  { username: 'John Smith', password: 'password3', userId: 'jsmith', role: 'user' },
 ])
 
 const currentUser = ref(null)
 const isLoggedIn = ref(false)
 const userId = ref<string | null>(null)
+const username = ref<string | null>(null)
 
 const userRole = computed(() => currentUser.value?.role || 'guest') // Default to 'guest'
 
 function switchUser(user: { username: string; password: string; userId: string; role: string }) {
   currentUser.value = user
   userId.value = user.userId
+  username.value = user.username // Ensure username is set
   isLoggedIn.value = true
   console.log('userId', userId.value)
   console.log('isLoggedIn', isLoggedIn.value)
@@ -43,6 +45,7 @@ export function useUserSwitching() {
     isLoggedIn,
     userId,
     userRole,
+    username,
     switchUser,
     handleLogout,
     hasPermission,

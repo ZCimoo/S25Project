@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { useActivityStore } from '../models/useActivityStore'
+import { useUserSwitching } from '../models/useUserSwitching'
 import ActivityManager from '../components/ActivityManager.vue'
 
-const { activities } = useActivityStore() // Use global activity list
+const { isLoggedIn } = useUserSwitching() // No need for userId here
 </script>
 
 <template>
-  <main>
-    <h1 class="title">Friend Activities</h1>
-    <ActivityManager :activities="activities" :filterByUser="false" />
+  <main v-if="isLoggedIn">
+    <h1 class="title">Friend Activity</h1>
+    <ActivityManager />
+  </main>
+  <main v-else>
+    <p>Please log in to view activities.</p>
   </main>
 </template>

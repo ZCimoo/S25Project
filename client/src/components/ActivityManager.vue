@@ -1,49 +1,49 @@
 <script setup lang="ts">
-import { ref, defineProps, computed } from 'vue'
+import { ref, computed } from 'vue'
+import { useActivityStore } from '../models/useActivityStore'
 import ActivityForm from './ActivityForm.vue'
 import ActivityList from './ActivityList.vue'
 
+const { activities, addActivity } = useActivityStore()
 const showForm = ref(false)
 
-const props = defineProps<{
-  userId?: string | null
-  activities: Array<{
-    id: number
-    title: string
-    date: string
-    duration: string
-    location: string
-    type: string
-    userId: string
-  }>
-  addActivity?: (activity: any) => void
-  filterByUser?: boolean
-}>()
+const props = defineProps<{ userId?: string | null; username?: string | null }>()
 
 const displayedActivities = computed(() => {
-  if (!props.filterByUser) return props.activities // Show all activities
-  return props.activities.filter((activity) => activity.userId === props.userId)
+  return props.userId
+    ? activities.value.filter((activity) => activity.userId === props.userId)
+    : activities.value
 })
 
-const addActivity = (activity) => {
-  if (props.addActivity) {
-    activity.userId = props.userId // Ensure correct user
-    props.addActivity(activity)
+const addNewActivity = (activity) => {
+  if (props.userId && props.username) {
+    activity.userId = props.userId
+    activity.username = props.username // Use the username prop
   }
+  addActivity(activity) // Update global activity store
   showForm.value = false
 }
 </script>
 
 <template>
-  <div>
-    <button class="button is-primary" @click="showForm = !showForm">Add Activity</button>
-    <ActivityForm
-      v-if="showForm"
-      :showForm="showForm"
-      @activity-saved="addActivity"
-      @cancel="showForm = false"
-    />
-    <ActivityList v-if="displayedActivities.length > 0" :activities="displayedActivities" />
-    <p v-else>No activities found.</p>
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <button class="button is-primary is-fullwidth" @click="showForm = !showForm">
+        Add Activity
+      </button>
+      <ActivityForm
+        v-if="showForm"
+        :showForm="showForm"
+        @activity-saved="addNewActivity"
+        @cancel="showForm = false"
+      />
+      <ActivityList :activities="displayedActivities" />
+    </div>
   </div>
 </template>
+
+<style scoped>
+.column {
+  display: block;
+}
+</style>
