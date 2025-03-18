@@ -13,10 +13,10 @@ const routes = [
   {
     path: '/admin',
     component: AdminView,
-    beforeEnter: (to, from, next) => {
+    beforeEnter: (to: any, from: any, next: (arg0: string | undefined) => void) => {
       const { hasPermission } = useUserSwitching()
       if (hasPermission('admin')) {
-        next()
+        next(undefined)
       } else {
         next('/')
       }
