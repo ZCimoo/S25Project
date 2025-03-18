@@ -60,7 +60,7 @@ function logoutAndRedirect() {
         <div class="navbar-item">
           <div class="buttons">
             <template v-if="isLoggedIn">
-              <span class="navbar-text">Welcome, {{ currentUser.username }}</span>
+              <span class="navbar-text">Welcome, {{ currentUser?.username ?? 'Guest' }}</span>
               <button class="button is-light" @click="logoutAndRedirect">Logout</button>
             </template>
             <template v-else>
