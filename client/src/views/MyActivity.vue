@@ -2,7 +2,7 @@
 import { useUserSwitching } from '../models/useUserSwitching'
 import ActivityManager from '../components/ActivityManager.vue'
 
-const { userId, isLoggedIn, username } = useUserSwitching() // Ensure username is retrieved
+const { userId, isLoggedIn, username } = useUserSwitching()
 </script>
 
 <template>

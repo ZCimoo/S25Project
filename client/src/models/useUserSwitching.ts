@@ -6,17 +6,21 @@ const users = ref([
   { username: 'John Smith', password: 'password3', userId: 'jsmith', role: 'user' },
 ])
 
-const currentUser = ref(null)
+const currentUser = ref<{
+  username: string
+  password: string
+  userId: string
+  role: string
+} | null>(null)
 const isLoggedIn = ref(false)
 const userId = ref<string | null>(null)
 const username = ref<string | null>(null)
 
-const userRole = computed(() => currentUser.value?.role || 'guest') // Default to 'guest'
-
+const userRole = computed(() => currentUser.value?.role || 'user')
 function switchUser(user: { username: string; password: string; userId: string; role: string }) {
   currentUser.value = user
   userId.value = user.userId
-  username.value = user.username // Ensure username is set
+  username.value = user.username
   isLoggedIn.value = true
   console.log('userId', userId.value)
   console.log('isLoggedIn', isLoggedIn.value)

@@ -34,9 +34,18 @@ const activities = ref([
 ])
 
 export const useActivityStore = () => {
-  const addActivity = (activity) => {
-    activity.id = activities.value.length + 1 // Generate a new ID
-    activities.value.unshift(activity) // Add to the beginning of the list
+  const addActivity = (activity: {
+    id: number
+    title: string
+    date: string
+    duration: string
+    location: string
+    type: string
+    userId: string
+    username: string
+  }) => {
+    activity.id = activities.value.length + 1
+    activities.value.unshift(activity)
   }
 
   return { activities, addActivity }

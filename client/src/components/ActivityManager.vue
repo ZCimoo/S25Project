@@ -15,12 +15,21 @@ const displayedActivities = computed(() => {
     : activities.value
 })
 
-const addNewActivity = (activity) => {
+const addNewActivity = (activity: {
+  id: number
+  title: string
+  date: string
+  duration: string
+  location: string
+  type: string
+  userId: string
+  username: string
+}) => {
   if (props.userId && props.username) {
     activity.userId = props.userId
-    activity.username = props.username // Use the username prop
+    activity.username = props.username
   }
-  addActivity(activity) // Update global activity store
+  addActivity(activity)
   showForm.value = false
 }
 </script>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import MyActivity from './MyActivity.vue'
 import { useUserSwitching } from '../models/useUserSwitching'
 
 const { users } = useUserSwitching()
