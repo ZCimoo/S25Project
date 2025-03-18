@@ -1,8 +1,20 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
-const props = defineProps({
-  activities: Array,
-})
+
+interface Activity {
+  id: number
+  title: string
+  date: string
+  duration: string
+  location: string
+  type: string
+  userId: string
+  username: string
+}
+
+const props = defineProps<{
+  activities: Activity[]
+}>()
 </script>
 
 <template>
