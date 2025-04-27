@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "userId": "zcimo",
+      "password": "123456",
+      "firstName": "Zachary",
+      "lastName": "Cimorelli",
+      "role": "admin",
+      "age": 20,
+      "gender": "male",
+      "email": "zcimo@mail.com"
+    },
+    {
+      "id": 2,
+      "userId": "vp",
+      "password": "123456",
+      "firstName": "Kamala",
+      "lastName": "Harris",
+      "role": "user",
+      "age": 60,
+      "gender": "female",
+      "email": "kharris@mail.com"
+    },
+    {
+      "id": 3,
+      "userId": "jsmith",
+      "password": "123456",
+      "firstName": "John",
+      "lastName": "Smith",
+      "role": "user",
+      "age": 25,
+      "gender": "male",
+      "email": "jsmith@mail.com"
+    }
+  ]
+}

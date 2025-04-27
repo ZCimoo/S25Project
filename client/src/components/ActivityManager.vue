@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useActivityStore } from '../models/useActivityStore'
+import { getAll, addActivity } from '../models/activities'
 import ActivityForm from './ActivityForm.vue'
 import ActivityList from './ActivityList.vue'
 
-const { activities, addActivity } = useActivityStore()
 const showForm = ref(false)
+const activities = ref(getAll())
 
 const props = defineProps<{ userId?: string | null; username?: string | null }>()
 
 const displayedActivities = computed(() => {
   return props.userId
-    ? activities.value.filter((activity) => activity.userId === props.userId)
+    ? activities.value.data.filter((activity) => activity.userId === props.userId)
     : activities.value
 })
 
@@ -30,6 +31,7 @@ const addNewActivity = (activity: {
     activity.username = props.username
   }
   addActivity(activity)
+  activities.value = getAll()
   showForm.value = false
 }
 </script>
@@ -46,7 +48,6 @@ const addNewActivity = (activity: {
         @activity-saved="addNewActivity"
         @cancel="showForm = false"
       />
-      <ActivityList :activities="displayedActivities" />
     </div>
   </div>
 </template>

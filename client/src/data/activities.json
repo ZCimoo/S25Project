@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "Running",
+      "date": "2023-10-01",
+      "duration": "30 mins",
+      "location": "Park",
+      "type": "Cardio",
+      "userId": "zcimo"
+    },
+    {
+      "id": 2,
+      "title": "Swimming",
+      "date": "2023-10-02",
+      "duration": "45 mins",
+      "location": "Pool",
+      "type": "Cardio",
+      "userId": "vp"
+    },
+    {
+      "id": 3,
+      "title": "Cycling",
+      "date": "2023-10-03",
+      "duration": "60 mins",
+      "location": "Trail",
+      "type": "Cardio",
+      "userId": "jsmith"
+    }
+  ]
+}
