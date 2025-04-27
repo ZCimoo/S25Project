@@ -12,7 +12,8 @@ export interface Activity {
   duration: string
   location: string
   type: string
-  userId: string
+  userId: number
+  username: string
 }
 
 export function getAll() {

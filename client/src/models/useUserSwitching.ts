@@ -1,29 +1,25 @@
 import { ref, computed, watchEffect } from 'vue'
+import { getAll, type User } from './users'
 
-const users = ref([
-  { username: 'Zachary', password: 'password1', userId: 'zcimo', role: 'admin' },
-  { username: 'Kamala Harris', password: 'password2', userId: 'vp', role: 'user' },
-  { username: 'John Smith', password: 'password3', userId: 'jsmith', role: 'user' },
-])
+const users = getAll()
 
-const currentUser = ref<{
-  username: string
-  password: string
-  userId: string
-  role: string
-} | null>(null)
+export const currentUser = ref<User | null>(null)
 const isLoggedIn = ref(false)
-const userId = ref<string | null>(null)
+const userId = ref<number | null>(null)
 const username = ref<string | null>(null)
 
 const userRole = computed(() => currentUser.value?.role || 'user')
-function switchUser(user: { username: string; password: string; userId: string; role: string }) {
-  currentUser.value = user
-  userId.value = user.userId
-  username.value = user.username
-  isLoggedIn.value = true
-  console.log('userId', userId.value)
-  console.log('isLoggedIn', isLoggedIn.value)
+function switchUser(userIdToSwitch: number) {
+  const foundUser = users.data.find((u) => u.userId === userIdToSwitch)
+  if (foundUser) {
+    currentUser.value = foundUser
+    username.value = foundUser.username
+    isLoggedIn.value = true
+    console.log('userId', userId.value)
+    console.log('isLoggedIn', isLoggedIn.value)
+  } else {
+    console.log('User not found')
+  }
 }
 
 function handleLogout() {

@@ -2,6 +2,10 @@
 import { useUserSwitching } from '../models/useUserSwitching'
 import ActivityManager from '../components/ActivityManager.vue'
 import NotificationList from '@/components/NotificationList.vue'
+import ActivityList from '../components/ActivityList.vue'
+import { getAll, type User } from '../models/users'
+
+const users = getAll()
 
 const { userId, isLoggedIn, username } = useUserSwitching()
 </script>
@@ -10,7 +14,8 @@ const { userId, isLoggedIn, username } = useUserSwitching()
   <main v-if="isLoggedIn">
     <h1 class="title">My Activities</h1>
     <NotificationList />
-    <ActivityManager :userId="userId" :username="username" />
+    <ActivityManager :users.userId="userId" :username="username" />
+    <ActivityList />
   </main>
   <main v-else>
     <p>Please log in to view your activities.</p>

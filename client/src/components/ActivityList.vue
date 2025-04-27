@@ -1,26 +1,17 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import { getAll, type Activity } from '../models/activities'
+import { getAll as getAllUsers, type User, getName } from '../models/users'
 
-interface Activity {
-  id: number
-  title: string
-  date: string
-  duration: string
-  location: string
-  type: string
-  userId: string
-  username: string
-}
+const users = getAllUsers()
 
-const props = defineProps<{
-  activities: Activity[]
-}>()
+const activities = getAll()
 </script>
 
 <template>
   <div class="section">
-    <div v-if="activities.length > 0">
-      <div v-for="(activity, index) in activities" :key="index" class="card mb-4">
+    <div v-if="activities.data && activities.data.length > 0">
+      <div v-for="(activity, index) in activities.data" :key="index" class="card mb-4">
         <div class="box">
           <article class="media">
             <div class="media-left">
@@ -31,7 +22,8 @@ const props = defineProps<{
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong>{{ activity.username }}</strong> <small>@{{ activity.userId }}</small>
+                  <strong>{{ getName(activity.userId) }}</strong>
+                  <small> @{{ activity.username }}</small>
                   <br />
                   <small>{{ activity.date }}</small>
                   <br />

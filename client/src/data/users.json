@@ -1,8 +1,8 @@
 {
   "items": [
     {
-      "id": 1,
-      "userId": "zcimo",
+      "userId": 1,
+      "username": "zcimo",
       "password": "123456",
       "firstName": "Zachary",
       "lastName": "Cimorelli",
@@ -12,8 +12,8 @@
       "email": "zcimo@mail.com"
     },
     {
-      "id": 2,
-      "userId": "vp",
+      "userId": 2,
+      "username": "vp",
       "password": "123456",
       "firstName": "Kamala",
       "lastName": "Harris",
@@ -23,8 +23,8 @@
       "email": "kharris@mail.com"
     },
     {
-      "id": 3,
-      "userId": "jsmith",
+      "userId": 3,
+      "username": "jsmith",
       "password": "123456",
       "firstName": "John",
       "lastName": "Smith",

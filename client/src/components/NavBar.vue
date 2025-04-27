@@ -2,10 +2,12 @@
 import { RouterLink, useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { useUserSwitching } from '../models/useUserSwitching'
+import { getAll, type User } from '../models/users'
 
 const router = useRouter()
 const isDropdownActive = ref(false)
-const { users, switchUser, isLoggedIn, handleLogout, currentUser } = useUserSwitching()
+const { switchUser, isLoggedIn, handleLogout, currentUser } = useUserSwitching()
+const users = getAll()
 
 function toggleDropdown() {
   isDropdownActive.value = !isDropdownActive.value
@@ -87,10 +89,10 @@ function logoutAndRedirect() {
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                   <div class="dropdown-content">
                     <a
-                      v-for="user in users"
-                      :key="user.username"
+                      v-for="user in users.data"
+                      :key="user.userId"
                       class="dropdown-item"
-                      @click="switchUser(user)"
+                      @click="switchUser(user.userId)"
                     >
                       {{ user.username }}
                     </a>

@@ -3,17 +3,18 @@ import { ref, computed } from 'vue'
 import { useActivityStore } from '../models/useActivityStore'
 import { getAll, addActivity } from '../models/activities'
 import ActivityForm from './ActivityForm.vue'
-import ActivityList from './ActivityList.vue'
-
+import { currentUser } from '../models/useUserSwitching'
 const showForm = ref(false)
 const activities = ref(getAll())
 
-const props = defineProps<{ userId?: string | null; username?: string | null }>()
+const props = defineProps<{ userId?: number | null; username?: string | null }>()
 
 const displayedActivities = computed(() => {
+  if (!activities.value.data) return []
+
   return props.userId
     ? activities.value.data.filter((activity) => activity.userId === props.userId)
-    : activities.value
+    : activities.value.data
 })
 
 const addNewActivity = (activity: {
@@ -23,12 +24,15 @@ const addNewActivity = (activity: {
   duration: string
   location: string
   type: string
-  userId: string
+  userId: number
   username: string
 }) => {
-  if (props.userId && props.username) {
-    activity.userId = props.userId
-    activity.username = props.username
+  if (currentUser.value) {
+    activity.userId = currentUser.value.userId
+    activity.username = currentUser.value.username
+  } else {
+    console.error('Current user is null. Cannot add activity.')
+    return
   }
   addActivity(activity)
   activities.value = getAll()

@@ -7,7 +7,8 @@
       "duration": "30 mins",
       "location": "Park",
       "type": "Cardio",
-      "userId": "zcimo"
+      "userId": 1,
+      "username": "zcimo"
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "duration": "45 mins",
       "location": "Pool",
       "type": "Cardio",
-      "userId": "vp"
+      "userId": 2,
+      "username": "kharris"
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "duration": "60 mins",
       "location": "Trail",
       "type": "Cardio",
-      "userId": "jsmith"
+      "userId": 3,
+      "username": "jsmith"
     }
   ]
 }
