@@ -1,6 +1,8 @@
 import type { DataListEnvelope } from './dataEnvelopes'
-import activities from '../data/activities.json'
+import activitiesJson from '../data/activities.json'
+import { ref } from 'vue'
 
+const activities = ref<Activity[]>(activitiesJson.items)
 export interface ActivityMeta {
   createdAt: string
   updatedAt: string
@@ -18,17 +20,17 @@ export interface Activity {
 
 export function getAll() {
   return {
-    data: activities.items,
-    total: activities.items.length,
+    data: activities.value,
+    total: activities.value.length,
     skip: 0,
-    limit: activities.items.length,
+    limit: activities.value.length,
   } as DataListEnvelope<Activity>
 }
 
 export function getOne(id: number) {
-  return activities.items.find((activity: Activity) => activity.id === id)
+  return activities.value.find((activity: Activity) => activity.id === id)
 }
 
 export function addActivity(activity: Activity): void {
-  activities.items.push(activity)
+  activities.value.push(activity)
 }

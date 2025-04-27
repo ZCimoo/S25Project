@@ -1,37 +1,7 @@
 import { ref } from 'vue'
+import { getAll, type Activity } from './activities'
 
-const activities = ref([
-  {
-    id: 1,
-    title: 'Running',
-    date: '2023-10-01',
-    duration: '30 mins',
-    location: 'Park',
-    type: 'Cardio',
-    userId: 'zcimo',
-    username: 'Zachary',
-  },
-  {
-    id: 2,
-    title: 'Swimming',
-    date: '2023-10-02',
-    duration: '45 mins',
-    location: 'Pool',
-    type: 'Cardio',
-    userId: 'vp',
-    username: 'Kamala Harris',
-  },
-  {
-    id: 3,
-    title: 'Cycling',
-    date: '2023-10-03',
-    duration: '60 mins',
-    location: 'Trail',
-    type: 'Cardio',
-    userId: 'jsmith',
-    username: 'John Smith',
-  },
-])
+const activities = ref(getAll())
 
 export const useActivityStore = () => {
   const addActivity = (activity: {
@@ -41,11 +11,11 @@ export const useActivityStore = () => {
     duration: string
     location: string
     type: string
-    userId: string
+    userId: number
     username: string
   }) => {
-    activity.id = activities.value.length + 1
-    activities.value.unshift(activity)
+    activity.id = activities.value.data.length + 1
+    activities.value.data.unshift(activity)
   }
 
   return { activities, addActivity }

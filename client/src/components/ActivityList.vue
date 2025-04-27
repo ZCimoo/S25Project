@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
 import { getAll, type Activity } from '../models/activities'
 import { getAll as getAllUsers, type User, getName } from '../models/users'
 
 const users = getAllUsers()
 
-const activities = getAll()
+const activities = computed(() => getAll())
 </script>
 
 <template>
