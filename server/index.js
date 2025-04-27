@@ -1,14 +1,18 @@
-const express = require('express');
-const PORT = 8000
+const express = require("express");
+const activitiesController = require("./controllers/activities");
+const PORT = 8000;
 
 const app = express();
-
-app.get('/', (req, res) => {
-    res.send('Hello World');
-});
+//Middleware
+app.use(express.json());
+app
+  .get("/", (req, res) => {
+    res.send("Hello World");
+  })
+  .use("/api/v1/activities", activitiesController);
 
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/`);
+  console.log(`Server running at http://localhost:${PORT}/`);
 });
 
-console.log('Hello World');
+console.log("Hello World");
