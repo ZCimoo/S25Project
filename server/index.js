@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 require("dotenv").config();
 const activitiesController = require("./controllers/activities");
 const usersController = require("./controllers/users");
