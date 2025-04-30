@@ -8,9 +8,12 @@ POST http://localhost:8000/api/v1/activities
 Content-Type: application/json
 
 {
-  "name": "Test Activity",
-  "description": "This is a test activity",
-  "type": "test"
+  "title": "Test Activity",
+  "duration": "120 mins",
+  "username": "jdoe",
+  "userid": 5,
+  "type": "test",
+  "location": "Test Location"
 }
 
 ###
@@ -25,6 +28,8 @@ DELETE http://localhost:8000/api/v1/activities/1
 ###
 GET http://localhost:8000/api/v1/activities
 ###
+POST http://localhost:8000/api/v1/activities/seed
+###
 USERS
 ###
 GET http://localhost:8000/api/v1/users
@@ -35,11 +40,13 @@ POST http://localhost:8000/api/v1/users
 Content-Type: application/json
 
 {
-      
       "username": "jdoe",
       "password": "123456",
-      "firstName": "John",
-      "lastName": "Doe"
+      "firstname": "Jane",
+      "lastname": "Doe",
+      "age": 35,
+      "gender": "female",
+      "email": "jdoe@mail.com"
 
 }
 ###
@@ -52,3 +59,4 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8000/api/v1/users/1
 ###
+POST http://localhost:8000/api/v1/users/seed
