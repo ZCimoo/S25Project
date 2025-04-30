@@ -1,4 +1,5 @@
 const data = require("../data/activities.json");
+const { CustomError, statusCodes } = require("./errors");
 
 async function getAll() {
   return data;
@@ -6,6 +7,9 @@ async function getAll() {
 
 async function get(id) {
   return data.items.find((activity) => activity.id == id);
+  if (!activity) {
+    throw new CustomError("Activity not found", statusCodes.NOT_FOUND);
+  }
 }
 
 async function create(activity) {

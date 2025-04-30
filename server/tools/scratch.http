@@ -25,3 +25,30 @@ DELETE http://localhost:8000/api/v1/activities/1
 ###
 GET http://localhost:8000/api/v1/activities
 ###
+USERS
+###
+GET http://localhost:8000/api/v1/users
+###
+GET http://localhost:8000/api/v1/users/1
+###
+POST http://localhost:8000/api/v1/users
+Content-Type: application/json
+
+{
+      
+      "username": "jdoe",
+      "password": "123456",
+      "firstName": "John",
+      "lastName": "Doe"
+
+}
+###
+PATCH http://localhost:8000/api/v1/users/1
+Content-Type: application/json
+
+{
+  "username": "zeecimo"
+}
+###
+DELETE http://localhost:8000/api/v1/users/1
+###
