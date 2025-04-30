@@ -14,7 +14,7 @@ app
   })
   .use("/api/v1/activities", activitiesController)
   .use("/api/v1/users", usersController)
-  .use("/", express.static("dist"));
+  .use(express.static(path.join(__dirname, "../client/dist")));
 //Error handling
 app.use((err, req, res, next) => {
   console.error(err);
