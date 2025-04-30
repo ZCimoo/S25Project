@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useUserSwitching } from '../models/useUserSwitching'
+import { getAll, type User as users } from '../models/users'
 
-const { users } = useUserSwitching()
+const { data: users } = getAll()
 </script>
 
 <template>
