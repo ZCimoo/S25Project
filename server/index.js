@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, "..", "client", "dist")));
 
 // Catch-all for frontend (Vue.js) routing
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "client", "dist", "index.html"));
 });
 //Error handling
 app.use((err, req, res, next) => {
