@@ -29,7 +29,7 @@ app
   .use("/api/v1/activities", activitiesController)
   .use("/api/v1/users", usersController);
 
-app.use(express.static(path.join(__dirname, "client", "dist")));
+app.use(express.static(path.join(__dirname, "..", "client", "dist")));
 
 // Catch-all for frontend (Vue.js) routing
 app.get("*", (req, res) => {
