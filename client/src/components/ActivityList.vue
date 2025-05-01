@@ -17,8 +17,8 @@ getAll().then((response) => {
 
 <template>
   <div class="section">
-    <div v-if="activities.data && activities.data.length > 0">
-      <div v-for="(activity, index) in activities.data" :key="index" class="card mb-4">
+    <div v-if="activities.items && activities.items.length > 0">
+      <div v-for="(activity, index) in activities.items" :key="index" class="card mb-4">
         <div class="box">
           <article class="media">
             <div class="media-left">

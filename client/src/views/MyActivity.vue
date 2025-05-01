@@ -17,7 +17,7 @@ getAll().then((response) => {
   <main v-if="isLoggedIn()">
     <h1 class="title">My Activities</h1>
     <NotificationList />
-
+    <ActivityManager />
     <ActivityList />
   </main>
   <main v-else>
