@@ -29,11 +29,11 @@ app
   .use("/api/v1/activities", activitiesController)
   .use("/api/v1/users", usersController);
 
-app.use(express.static(path.join(__dirname, "..", "client", "dist")));
+app.use(express.static(path.join(__dirname, "../dist")));
 
 // Catch-all for frontend (Vue.js) routing
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "client", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "dist", "index.html"));
 });
 //Error handling
 app.use((err, req, res, next) => {
