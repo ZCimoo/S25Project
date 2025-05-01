@@ -21,14 +21,16 @@ function toggleDropdown() {
 
 function logoutAndRedirect() {
   logout()
-  router.push('/')
+  router.push('/api/v1/home')
 }
 </script>
 
 <template>
   <nav class="navbar is-info" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <RouterLink to="/" class="navbar-item"> <i class="fas fa-dumbbell"></i> </RouterLink>
+      <RouterLink to="/api/v1/home" class="navbar-item">
+        <i class="fas fa-dumbbell"></i>
+      </RouterLink>
 
       <a
         role="button"
@@ -64,7 +66,7 @@ function logoutAndRedirect() {
           <a class="navbar-link"><i class="fas fa-clipboard"></i>Admin</a>
 
           <div class="navbar-dropdown">
-            <RouterLink to="/admin" class="navbar-item">Admin View</RouterLink>
+            <RouterLink to="/api/v1/admin" class="navbar-item">Admin View</RouterLink>
           </div>
         </div>
       </div>

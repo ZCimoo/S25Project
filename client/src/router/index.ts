@@ -12,13 +12,13 @@ const routes = [
   { path: '/api/v1/my-activity', component: MyActivity },
   { path: '/api/v1/about', component: AboutView },
   {
-    path: '/admin',
+    path: '/api/v1/admin',
     component: AdminView,
     beforeEnter: (to: any, from: any, next: (arg0: string | undefined) => void) => {
       if (isAdmin()) {
         next(undefined)
       } else {
-        next('/')
+        next('/api/v1/home')
       }
     },
   },

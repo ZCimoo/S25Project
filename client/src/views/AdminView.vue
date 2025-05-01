@@ -26,9 +26,9 @@ getAll().then((response) => {
         <th>Role</th>
         <th></th>
       </tr>
-      <tr v-for="user in users.data" :key="user.userId">
+      <tr v-for="user in users.items" :key="user.userid">
         <td>{{ user.username }}</td>
-        <td>@{{ user.userId }}</td>
+        <td>@{{ user.userid }}</td>
         <td>{{ user.role }}</td>
         <td>
           <button class="button"><i class="fas fa-edit"></i></button>

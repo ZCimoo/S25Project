@@ -5,7 +5,9 @@ import ActivityList from '../components/ActivityList.vue'
 import { getAll, type User } from '../models/users'
 import { ref } from 'vue'
 import type { DataListEnvelope } from '@/models/dataEnvelopes'
-import { isLoggedIn } from '@/models/session'
+import { isLoggedIn, refSession } from '@/models/session'
+
+const session = refSession()
 
 const users = ref({} as DataListEnvelope<User>)
 getAll().then((response) => {
@@ -17,7 +19,7 @@ getAll().then((response) => {
   <main v-if="isLoggedIn()">
     <h1 class="title">My Activities</h1>
     <NotificationList />
-    <ActivityManager />
+    <ActivityManager session.userid />
     <ActivityList />
   </main>
   <main v-else>
