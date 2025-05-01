@@ -1,5 +1,6 @@
+import { isAdmin } from '@/models/session'
 import { createRouter, createWebHistory } from 'vue-router'
-import { useUserSwitching } from '../models/useUserSwitching'
+
 import AdminView from '../views/AdminView.vue'
 import HomeView from '../views/HomeView.vue'
 import MyActivity from '../views/MyActivity.vue'
@@ -14,8 +15,7 @@ const routes = [
     path: '/admin',
     component: AdminView,
     beforeEnter: (to: any, from: any, next: (arg0: string | undefined) => void) => {
-      const { hasPermission } = useUserSwitching()
-      if (hasPermission('admin')) {
+      if (isAdmin()) {
         next(undefined)
       } else {
         next('/')

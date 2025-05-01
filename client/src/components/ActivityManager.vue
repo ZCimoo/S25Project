@@ -3,7 +3,8 @@ import { ref, computed } from 'vue'
 import { getAll, create, type Activity } from '../models/activities'
 import ActivityForm from './ActivityForm.vue'
 import { type DataListEnvelope } from '../models/dataEnvelopes'
-import { currentUser } from '../models/useUserSwitching'
+import { refSession } from '@/models/session'
+import { type User, getAll as getAllUsers } from '../models/users'
 const showForm = ref(false)
 const activities = ref({} as DataListEnvelope<Activity>)
 
@@ -11,7 +12,11 @@ getAll().then((response) => {
   activities.value = response
 })
 
+const currentUser = refSession().value.user
+
 const props = defineProps<{ userId?: number | null; username?: string | null }>()
+
+const session = refSession()
 
 const displayedActivities = computed(() => {
   if (!activities.value) return []
@@ -31,9 +36,9 @@ const addNewActivity = (activity: {
   userId: number
   username: string
 }) => {
-  if (currentUser.value) {
-    activity.userId = currentUser.value.userId
-    activity.username = currentUser.value.username
+  if (currentUser) {
+    activity.userId = currentUser.userId
+    activity.username = currentUser.username
   } else {
     console.error('Current user is null. Cannot add activity.')
     return

@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from 'vue-router'
 import { ref } from 'vue'
-import { useUserSwitching } from '../models/useUserSwitching'
 import { getAll, type User } from '../models/users'
 import { type DataListEnvelope } from '../models/dataEnvelopes'
+import { refSession, isLoggedIn, login, logout } from '@/models/session'
 
 const router = useRouter()
 const isDropdownActive = ref(false)
-const { switchUser, isLoggedIn, handleLogout, currentUser } = useUserSwitching()
+const currentUser = refSession().value.user
+
 const users = ref({} as DataListEnvelope<User>)
 
 getAll().then((response) => {
@@ -19,7 +20,7 @@ function toggleDropdown() {
 }
 
 function logoutAndRedirect() {
-  handleLogout()
+  logout()
   router.push('/')
 }
 </script>
@@ -69,7 +70,7 @@ function logoutAndRedirect() {
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <template v-if="isLoggedIn">
+            <template v-if="isLoggedIn()">
               <span class="navbar-text">Welcome, {{ currentUser?.username ?? 'Guest' }}</span>
               <button class="button is-light" @click="logoutAndRedirect">Logout</button>
             </template>
@@ -97,7 +98,7 @@ function logoutAndRedirect() {
                       v-for="user in users.data"
                       :key="user.userId"
                       class="dropdown-item"
-                      @click="switchUser(user.userId)"
+                      @click="login(user.userId)"
                     >
                       {{ user.username }}
                     </a>

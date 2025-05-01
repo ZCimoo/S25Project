@@ -1,20 +1,23 @@
 <script setup lang="ts">
-import { useUserSwitching } from '../models/useUserSwitching'
 import ActivityManager from '../components/ActivityManager.vue'
 import NotificationList from '@/components/NotificationList.vue'
 import ActivityList from '../components/ActivityList.vue'
 import { getAll, type User } from '../models/users'
+import { ref } from 'vue'
+import type { DataListEnvelope } from '@/models/dataEnvelopes'
+import { isLoggedIn } from '@/models/session'
 
-const users = getAll()
-
-const { userId, isLoggedIn, username } = useUserSwitching()
+const users = ref({} as DataListEnvelope<User>)
+getAll().then((response) => {
+  users.value = response as DataListEnvelope<User>
+})
 </script>
 
 <template>
-  <main v-if="isLoggedIn">
+  <main v-if="isLoggedIn()">
     <h1 class="title">My Activities</h1>
     <NotificationList />
-    <ActivityManager :users.userId="userId" :username="username" />
+
     <ActivityList />
   </main>
   <main v-else>

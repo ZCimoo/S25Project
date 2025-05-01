@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import { useUserSwitching } from '../models/useUserSwitching'
-import { getAll, type User as users } from '../models/users'
+import { type User, getAll } from '../models/users'
+import { ref } from 'vue'
+import type { DataListEnvelope } from '@/models/dataEnvelopes'
 
-const { data: users } = getAll()
+const users = ref({} as DataListEnvelope<User>)
+
+getAll().then((response) => {
+  users.value = response as DataListEnvelope<User>
+})
 </script>
 
 <template>
@@ -21,7 +26,7 @@ const { data: users } = getAll()
         <th>Role</th>
         <th></th>
       </tr>
-      <tr v-for="user in users" :key="user.userId">
+      <tr v-for="user in users.data" :key="user.userId">
         <td>{{ user.username }}</td>
         <td>@{{ user.userId }}</td>
         <td>{{ user.role }}</td>

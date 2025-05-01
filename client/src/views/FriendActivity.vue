@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { useUserSwitching } from '../models/useUserSwitching'
+import { isLoggedIn } from '@/models/session'
 import ActivityManager from '../components/ActivityManager.vue'
-
-const { isLoggedIn } = useUserSwitching()
 </script>
 
 <template>
-  <main v-if="isLoggedIn">
+  <main v-if="isLoggedIn()">
     <h1 class="title">Friend Activity</h1>
     <ActivityManager />
   </main>
