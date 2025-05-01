@@ -26,28 +26,24 @@ const displayedActivities = computed(() => {
     : activities.value.items
 })
 
-const addNewActivity = (activity: {
-  id: number
-  title: string
-  date: string
-  duration: string
-  location: string
-  type: string
-  userId: number
-  username: string
-}) => {
-  if (currentUser) {
+async function addNewActivity(activity: Activity) {
+  try {
+    if (!currentUser?.userid) {
+      console.error('No current user found')
+      return
+    }
+
     activity.userId = currentUser.userid
     activity.username = currentUser.username
-  } else {
-    console.error('Current user is null. Cannot add activity.')
-    return
+
+    await create(activity)
+    activities.value = await getAll()
+
+    // Hide the form after adding the activity
+  } catch (error) {
+    console.error('Error adding new activity:', error)
+    // Optionally handle the error (e.g., show a notification to the user)
   }
-  create(activity)
-  getAll().then((response) => {
-    activities.value = response
-  })
-  showForm.value = false
 }
 </script>
 

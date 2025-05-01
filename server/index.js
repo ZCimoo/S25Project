@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 require("dotenv").config();
 const activitiesController = require("./controllers/activities");
@@ -26,8 +27,14 @@ app
     res.send("Hello World");
   })
   .use("/api/v1/activities", activitiesController)
-  .use("/api/v1/users", usersController)
-  .use("/", express.static("dist"));
+  .use("/api/v1/users", usersController);
+
+app.use(express.static(path.join(__dirname, "client", "dist")));
+
+// Catch-all for frontend (Vue.js) routing
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 //Error handling
 app.use((err, req, res, next) => {
   console.error(err);

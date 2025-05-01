@@ -7,7 +7,7 @@ import { refSession, isLoggedIn, login, logout } from '@/models/session'
 
 const router = useRouter()
 const isDropdownActive = ref(false)
-const currentUser = refSession().value.user
+const session = refSession()
 
 const users = ref({} as DataListEnvelope<User>)
 
@@ -75,7 +75,7 @@ function logoutAndRedirect() {
         <div class="navbar-item">
           <div class="buttons">
             <template v-if="isLoggedIn()">
-              <span class="navbar-text">Welcome, {{ currentUser?.username ?? 'Guest' }}</span>
+              <span class="navbar-text">Welcome, {{ session?.user?.username ?? 'Guest' }}</span>
               <button class="button is-light" @click="logoutAndRedirect">Logout</button>
             </template>
             <template v-else>
