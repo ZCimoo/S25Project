@@ -26,7 +26,7 @@ export function getOne(id: number) {
 }
 
 export function create(data: Activity) {
-  return api<Activity>('activities', data)
+  return api<Activity>(`activities`, data)
 }
 
 export function update(id: number, data: Activity) {

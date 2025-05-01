@@ -18,8 +18,8 @@ export const useActivityStore = () => {
     userId: number
     username: string
   }) => {
-    activity.id = activities.value.data.length + 1
-    activities.value.data.unshift(activity)
+    activity.id = activities.value.items.length + 1
+    activities.value.items.unshift(activity)
   }
 
   return { activities, addActivity }

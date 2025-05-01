@@ -8,9 +8,9 @@ import AboutView from '../views/AboutView.vue'
 import FriendActivity from '../views/FriendActivity.vue'
 
 const routes = [
-  { path: '/', component: HomeView },
-  { path: '/my-activity', component: MyActivity },
-  { path: '/about', component: AboutView },
+  { path: '/api/v1/home', component: HomeView },
+  { path: '/api/v1/my-activity', component: MyActivity },
+  { path: '/api/v1/about', component: AboutView },
   {
     path: '/admin',
     component: AdminView,
@@ -22,7 +22,7 @@ const routes = [
       }
     },
   },
-  { path: '/friend-activity', component: FriendActivity },
+  { path: '/api/v1/friend-activity', component: FriendActivity },
 ]
 
 const router = createRouter({

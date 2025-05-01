@@ -22,5 +22,6 @@ export function api<T>(
   method?: string,
   headers?: HeadersInit,
 ): Promise<T> {
+  const url = `${API_ROOT.replace(/\/$/, '')}/${action.replace(/^\//, '')}`
   return rest<T>(`${API_ROOT}${action}`, data, method, headers)
 }

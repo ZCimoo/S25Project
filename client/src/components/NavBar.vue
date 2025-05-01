@@ -46,15 +46,17 @@ function logoutAndRedirect() {
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <RouterLink to="/" class="navbar-item"> <i class="fas fa-home"></i>Home</RouterLink>
+        <RouterLink to="/api/v1/home" class="navbar-item">
+          <i class="fas fa-home"></i>Home</RouterLink
+        >
 
-        <RouterLink to="/my-activity" class="navbar-item"
+        <RouterLink to="/api/v1/my-activity" class="navbar-item"
           ><i class="fas fa-walking"></i> My Activity
         </RouterLink>
-        <RouterLink to="/friend-activity" class="navbar-item">
+        <RouterLink to="/api/v1/friend-activity" class="navbar-item">
           <i class="fas fa-user-friends"></i>Friend Activity
         </RouterLink>
-        <RouterLink to="/about" class="navbar-item">
+        <RouterLink to="/api/v1/about" class="navbar-item">
           <i class="fas fa-user-friends"></i>About
         </RouterLink>
 
@@ -95,10 +97,10 @@ function logoutAndRedirect() {
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                   <div class="dropdown-content">
                     <a
-                      v-for="user in users.data"
-                      :key="user.userId"
+                      v-for="user in users.items"
+                      :key="user.userid"
                       class="dropdown-item"
-                      @click="login(user.userId)"
+                      @click="login(user.userid)"
                     >
                       {{ user.username }}
                     </a>

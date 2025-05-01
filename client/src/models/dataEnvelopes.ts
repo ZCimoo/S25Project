@@ -1,5 +1,5 @@
 export interface DataListEnvelope<T> {
-  data: T[]
+  items: T[]
   total: number
   skip: number
   limit: number

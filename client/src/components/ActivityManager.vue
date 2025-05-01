@@ -22,8 +22,8 @@ const displayedActivities = computed(() => {
   if (!activities.value) return []
 
   return props.userId
-    ? activities.value.data.filter((activity) => activity.userId === props.userId)
-    : activities.value.data
+    ? activities.value.items.filter((activity) => activity.userId === props.userId)
+    : activities.value.items
 })
 
 const addNewActivity = (activity: {
@@ -37,7 +37,7 @@ const addNewActivity = (activity: {
   username: string
 }) => {
   if (currentUser) {
-    activity.userId = currentUser.userId
+    activity.userId = currentUser.userid
     activity.username = currentUser.username
   } else {
     console.error('Current user is null. Cannot add activity.')

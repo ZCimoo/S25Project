@@ -2,11 +2,11 @@ import type { DataListEnvelope } from './dataEnvelopes'
 import { api } from './session'
 
 export interface User {
-  userId: number
+  userid: number
   username: string
   password: string
-  firstName: string
-  lastName: string
+  firstname: string
+  lastname: string
   role: string
   age: number
   gender: string
@@ -25,5 +25,5 @@ export function searchUser(
   page: number,
   limit: number,
 ): Promise<DataListEnvelope<User>> {
-  return api('users/search/${search}')
+  return api(`users/search/${search}`)
 }

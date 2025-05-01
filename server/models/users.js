@@ -8,11 +8,12 @@ const BaseQuery = connect().from(TABLE_NAME).select("*");
 
 const isAmin = true;
 
-async function getAll(sort = "userid", order = "asc") {
+async function getAll(limit = 30, offset = 0, sort = "userid", order = "asc") {
   const list = await connect()
     .from(TABLE_NAME)
     .select("*", { count: "estimated" })
-    .order(sort, { ascending: order === "asc" });
+    .order(sort, { ascending: order === "asc" })
+    .range(offset, offset + limit - 1);
   if (list.error) {
     throw list.error;
   }
@@ -37,15 +38,24 @@ async function get(id) {
 
   return user;
 }
-async function search(query) {
-  const { data: user, error } = (await BaseQuery).error(
-    `firstName.ilike.%${query}%, lastName.ilike.%${query}%, username.ilike.%${query}%`
-  );
+async function search(
+  query,
+  limit = 30,
+  offset = 0,
+  sort = "userid",
+  order = "asc"
+) {
+  const { data: users, error } = await BaseQuery()
+    .or(
+      `firstName.ilike.%${query}%, lastName.ilike.%${query}%, username.ilike.%${query}%`
+    )
+    .order(sort, { ascending: order === "asc" })
+    .range(offset, offset + limit - 1);
   if (error) {
     throw error;
   }
   return {
-    user,
+    users,
     total: count,
   };
 }

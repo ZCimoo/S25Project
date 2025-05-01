@@ -4,11 +4,12 @@ const { connect } = require("./supabase");
 
 const TABLE_NAME = "activities";
 
-async function getAll(sort = "id", order = "asc") {
+async function getAll(limit = 30, offset = 0, sort = "id", order = "asc") {
   const list = await connect()
     .from(TABLE_NAME)
     .select("*", { count: "estimated" })
-    .order(sort, { ascending: order === "asc" });
+    .order(sort, { ascending: order === "asc" })
+    .range(offset, offset + limit - 1);
   if (list.error) {
     throw new CustomError(
       "Error fetching activities",
@@ -35,15 +36,30 @@ async function get(id) {
   return item;
 }
 
-async function search(query) {
-  const { data: items, error } = await connect()
+async function search(
+  query,
+  limit = 30,
+  offset = 0,
+  sort = "id",
+  order = "asc"
+) {
+  const {
+    data: items,
+    error,
+    count,
+  } = await connect()
     .from(TABLE_NAME)
     .select("*")
-    .or(`title.ilike.%${query}%,description.ilike.%${query}%`);
+    .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
+    .order(sort, { ascending: order === "asc" })
+    .range(offset, offset + limit - 1);
   if (error) {
     throw error;
   }
-  return items;
+  return {
+    items,
+    total: count,
+  };
 }
 
 async function create(activity) {
