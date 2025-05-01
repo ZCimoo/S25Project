@@ -12,16 +12,56 @@
     },
     {
       "id": 2,
+      "title": "Weight Lifting",
+      "date": "2023-10-04",
+      "duration": "45 mins",
+      "location": "Gym",
+      "type": "Strength",
+      "userId": 1,
+      "username": "zcimo"
+    },
+    {
+      "id": 3,
+      "title": "Yoga",
+      "date": "2023-10-06",
+      "duration": "30 mins",
+      "location": "Home",
+      "type": "Flexibility",
+      "userId": 1,
+      "username": "zcimo"
+    },
+    {
+      "id": 4,
       "title": "Swimming",
       "date": "2023-10-02",
       "duration": "45 mins",
       "location": "Pool",
       "type": "Cardio",
       "userId": 2,
-      "username": "kharris"
+      "username": "vp"
     },
     {
-      "id": 3,
+      "id": 5,
+      "title": "Pilates",
+      "date": "2023-10-05",
+      "duration": "40 mins",
+      "location": "Studio",
+      "type": "Flexibility",
+      "userId": 2,
+      "username": "vp"
+    },
+    {
+      "id": 6,
+      "title": "Walking",
+      "date": "2023-10-07",
+      "duration": "30 mins",
+      "location": "Neighborhood",
+      "type": "Cardio",
+      "userId": 2,
+      "username": "vp"
+    },
+    {
+      "id": 7,
       "title": "Cycling",
       "date": "2023-10-03",
       "duration": "60 mins",
@@ -29,6 +69,176 @@
       "type": "Cardio",
       "userId": 3,
       "username": "jsmith"
+    },
+    {
+      "id": 8,
+      "title": "Deadlifts",
+      "date": "2023-10-06",
+      "duration": "50 mins",
+      "location": "Gym",
+      "type": "Strength",
+      "userId": 3,
+      "username": "jsmith"
+    },
+    {
+      "id": 9,
+      "title": "Hiking",
+      "date": "2023-10-08",
+      "duration": "90 mins",
+      "location": "Mountains",
+      "type": "Endurance",
+      "userId": 3,
+      "username": "jsmith"
+    },
+    {
+      "id": 10,
+      "title": "CrossFit",
+      "date": "2023-10-01",
+      "duration": "60 mins",
+      "location": "Gym",
+      "type": "HIIT",
+      "userId": 4,
+      "username": "user4"
+    },
+    {
+      "id": 11,
+      "title": "Boxing",
+      "date": "2023-10-04",
+      "duration": "45 mins",
+      "location": "Fitness Center",
+      "type": "Cardio",
+      "userId": 4,
+      "username": "user4"
+    },
+    {
+      "id": 12,
+      "title": "Stretching",
+      "date": "2023-10-05",
+      "duration": "20 mins",
+      "location": "Home",
+      "type": "Flexibility",
+      "userId": 4,
+      "username": "user4"
+    },
+    {
+      "id": 13,
+      "title": "Zumba",
+      "date": "2023-10-02",
+      "duration": "50 mins",
+      "location": "Dance Studio",
+      "type": "Cardio",
+      "userId": 5,
+      "username": "user5"
+    },
+    {
+      "id": 14,
+      "title": "Resistance Band Training",
+      "date": "2023-10-06",
+      "duration": "35 mins",
+      "location": "Home",
+      "type": "Strength",
+      "userId": 5,
+      "username": "user5"
+    },
+    {
+      "id": 15,
+      "title": "Jogging",
+      "date": "2023-10-09",
+      "duration": "30 mins",
+      "location": "Park",
+      "type": "Cardio",
+      "userId": 5,
+      "username": "user5"
+    },
+    {
+      "id": 16,
+      "title": "Rowing",
+      "date": "2023-10-03",
+      "duration": "40 mins",
+      "location": "Gym",
+      "type": "Cardio",
+      "userId": 6,
+      "username": "user6"
+    },
+    {
+      "id": 17,
+      "title": "Push-Ups and Planks",
+      "date": "2023-10-06",
+      "duration": "25 mins",
+      "location": "Home",
+      "type": "Strength",
+      "userId": 6,
+      "username": "user6"
+    },
+    {
+      "id": 18,
+      "title": "Basketball",
+      "date": "2023-10-07",
+      "duration": "60 mins",
+      "location": "Recreation Center",
+      "type": "Endurance",
+      "userId": 6,
+      "username": "user6"
+    },
+    {
+      "id": 19,
+      "title": "Barre",
+      "date": "2023-10-04",
+      "duration": "45 mins",
+      "location": "Studio",
+      "type": "Flexibility",
+      "userId": 7,
+      "username": "user7"
+    },
+    {
+      "id": 20,
+      "title": "Elliptical",
+      "date": "2023-10-05",
+      "duration": "30 mins",
+      "location": "Gym",
+      "type": "Cardio",
+      "userId": 7,
+      "username": "user7"
+    },
+    {
+      "id": 21,
+      "title": "Kettlebell Workout",
+      "date": "2023-10-08",
+      "duration": "40 mins",
+      "location": "Home",
+      "type": "Strength",
+      "userId": 7,
+      "username": "user7"
+    },
+    {
+      "id": 22,
+      "title": "Sprints",
+      "date": "2023-10-03",
+      "duration": "20 mins",
+      "location": "Track",
+      "type": "HIIT",
+      "userId": 8,
+      "username": "user8"
+    },
+    {
+      "id": 23,
+      "title": "Core Training",
+      "date": "2023-10-07",
+      "duration": "30 mins",
+      "location": "Gym",
+      "type": "Strength",
+      "userId": 8,
+      "username": "user8"
+    },
+    {
+      "id": 24,
+      "title": "Tai Chi",
+      "date": "2023-10-09",
+      "duration": "35 mins",
+      "location": "Park",
+      "type": "Flexibility",
+      "userId": 8,
+      "username": "user8"
     }
   ]
 }

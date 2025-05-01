@@ -3,6 +3,7 @@ import { nextTick, ref } from 'vue'
 import { getAll, type Activity } from '../models/activities'
 import { getAll as getAllUsers, type User } from '../models/users'
 import { type DataListEnvelope } from '../models/dataEnvelopes'
+import NewActivityList from '@/components/myActivityList.vue'
 
 const activities = ref({} as DataListEnvelope<Activity>)
 const users = ref({} as DataListEnvelope<User>)
@@ -52,6 +53,54 @@ getAllUsers().then((response) => {
 
   <!-- Show loading message if no users data yet -->
   <div v-else>Loading users...</div>
+  <NewActivityList />
+
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-64x64">
+        <img
+          src="https://pbs.twimg.com/profile_images/1592241313700782081/T2pTYU8d_400x400.jpg"
+          alt="Image"
+        />
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong> yes </strong>
+          <br />
+          <small>slay</small>
+          <br />
+          <strong>title</strong>
+          <br />
+          Type: type
+          <br />
+          Location: spot
+          <br />
+          Duration: long
+        </p>
+      </div>
+      <nav class="level is-mobile">
+        <div class="level-left is-flex">
+          <a class="level-item" aria-label="reply">
+            <span class="icon is-small">
+              <i class="fas fa-reply" aria-hidden="true"></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="retweet">
+            <span class="icon is-small">
+              <i class="fas fa-retweet" aria-hidden="true"></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="like">
+            <span class="icon is-small">
+              <i class="fas fa-heart" aria-hidden="true"></i>
+            </span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </article>
 </template>
 
 <style></style>

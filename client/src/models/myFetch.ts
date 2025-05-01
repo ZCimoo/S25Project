@@ -1,4 +1,4 @@
-export const API_ROOT = (import.meta.env.VITE_API_ROOT as string) ?? '/api/v1'
+export const API_ROOT = (import.meta.env.VITE_API_ROOT as string) ?? '/api/v1/'
 
 export function rest<T>(
   url: string,
@@ -22,6 +22,5 @@ export function api<T>(
   method?: string,
   headers?: HeadersInit,
 ): Promise<T> {
-  const url = `${API_ROOT.replace(/\/$/, '')}/${action.replace(/^\//, '')}`
   return rest<T>(`${API_ROOT}${action}`, data, method, headers)
 }

@@ -72,6 +72,16 @@ router
         res.status(201).send(data);
       })
       .catch(next);
+  })
+  .get("/user/:id", (req, res, next) => {
+    const { id } = req.params;
+    const { limit, offset, sort, order } = req.query;
+    model
+      .getByUserId(id, num(limit), num(offset), sort, order)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch(next);
   });
 
 module.exports = router;

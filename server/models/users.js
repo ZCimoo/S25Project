@@ -121,6 +121,7 @@ function mapToDB(item) {
     role: item.role,
     age: item.age,
     gender: item.gender,
+    pfp: item.pfp,
   };
 }
 

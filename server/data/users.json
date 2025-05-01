@@ -9,7 +9,8 @@
       "role": "admin",
       "age": 20,
       "gender": "male",
-      "email": "zcimo@mail.com"
+      "email": "zcimo@mail.com",
+      "pfp": "https://lumiere-a.akamaihd.net/v1/images/open-uri20150422-20810-oqwl0b_8c22058c.jpeg?region=0%2C0%2C300%2C300"
     },
     {
       "userId": 2,
@@ -20,7 +21,8 @@
       "role": "user",
       "age": 60,
       "gender": "female",
-      "email": "kharris@mail.com"
+      "email": "kharris@mail.com",
+      "pfp": "https://pbs.twimg.com/profile_images/1592241313700782081/T2pTYU8d_400x400.jpg"
     },
     {
       "userId": 3,
@@ -31,7 +33,68 @@
       "role": "user",
       "age": 25,
       "gender": "male",
-      "email": "jsmith@mail.com"
+      "email": "jsmith@mail.com",
+      "pfp": "https://www.stemilt.com/wp-content/uploads/2016/07/Granny-Smith-300x300.png"
+    },
+    {
+      "userId": 4,
+      "username": "user4",
+      "password": "123456",
+      "firstName": "Alex",
+      "lastName": "Taylor",
+      "role": "user",
+      "age": 30,
+      "gender": "non-binary",
+      "email": "alex.taylor@mail.com",
+      "pfp": "https://i.pravatar.cc/300?img=4"
+    },
+    {
+      "userId": 5,
+      "username": "user5",
+      "password": "123456",
+      "firstName": "Jamie",
+      "lastName": "Lee",
+      "role": "user",
+      "age": 27,
+      "gender": "female",
+      "email": "jamie.lee@mail.com",
+      "pfp": "https://i.pravatar.cc/300?img=5"
+    },
+    {
+      "userId": 6,
+      "username": "user6",
+      "password": "123456",
+      "firstName": "Chris",
+      "lastName": "Morgan",
+      "role": "user",
+      "age": 32,
+      "gender": "male",
+      "email": "chris.morgan@mail.com",
+      "pfp": "https://i.pravatar.cc/300?img=6"
+    },
+    {
+      "userId": 7,
+      "username": "user7",
+      "password": "123456",
+      "firstName": "Morgan",
+      "lastName": "Reed",
+      "role": "user",
+      "age": 29,
+      "gender": "female",
+      "email": "morgan.reed@mail.com",
+      "pfp": "https://i.pravatar.cc/300?img=7"
+    },
+    {
+      "userId": 8,
+      "username": "user8",
+      "password": "123456",
+      "firstName": "Taylor",
+      "lastName": "Green",
+      "role": "user",
+      "age": 26,
+      "gender": "male",
+      "email": "taylor.green@mail.com",
+      "pfp": "https://i.pravatar.cc/300?img=8"
     }
   ]
 }

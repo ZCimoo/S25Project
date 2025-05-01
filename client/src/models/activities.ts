@@ -13,7 +13,7 @@ export interface Activity {
   duration: string
   location: string
   type: string
-  userId: number
+  userid: number
   username: string
 }
 
@@ -25,6 +25,10 @@ export function getOne(id: number) {
   return api<Activity>(`activities/${id}`)
 }
 
+export function getByUser(userId: number) {
+  return api<DataListEnvelope<Activity>>(`activities/user/${userId}`)
+}
+
 export function create(data: Activity) {
   return api<Activity>(
     'activities',
@@ -32,7 +36,7 @@ export function create(data: Activity) {
       title: data.title,
       duration: data.duration,
       username: data.username,
-      userId: data.userId,
+      userid: data.userid,
       type: data.type,
       location: data.location,
     },

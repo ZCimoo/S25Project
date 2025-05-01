@@ -27,9 +27,12 @@ export const isLoggedIn = () => session.value?.user !== null
 export function login(id: number) {
   return getOne(id).then((user) => {
     session.value.user = user as User
+    console.log('session.value.token', session.value.token)
+    console.log('session.value.user', session.value.user)
   })
 }
 export function logout() {
   session.value.user = null
   session.value.token = null
+  console.log('session.value.user', session.value.user)
 }

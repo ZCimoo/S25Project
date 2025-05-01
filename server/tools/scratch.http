@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:8000/api/v1/activities/1
+PATCH http://localhost:8000/api/v1/activities/
 Content-Type: application/json
 
 {
@@ -30,11 +30,13 @@ GET http://localhost:8000/api/v1/activities
 ###
 POST http://localhost:8000/api/v1/activities/seed
 ###
+GET http://localhost:8000/api/v1/activities/user/5
+###
 USERS
 ###
 GET http://localhost:8000/api/v1/users
 ###
-GET http://localhost:8000/api/v1/users/1
+GET http://localhost:8000/api/v1/users/6
 ###
 POST http://localhost:8000/api/v1/users
 Content-Type: application/json
@@ -50,13 +52,29 @@ Content-Type: application/json
 
 }
 ###
-PATCH http://localhost:8000/api/v1/users/1
+PATCH http://localhost:8000/api/v1/users/7
 Content-Type: application/json
 
 {
-  "username": "zeecimo"
+  "username": "zcimo (admin)"
 }
 ###
 DELETE http://localhost:8000/api/v1/users/1
 ###
 POST http://localhost:8000/api/v1/users/seed
+###
+POST http://localhost:8000/api/v1/users
+Content-Type: application/json
+
+{
+      "username": "zcimo",
+      "password": "123456",
+      "firstname": "Zach",
+      "lastname": "Cimorelli",
+      "age": 20,
+      "gender": "male",
+      "email": "zcimo@mail.com",
+      "role": "admin"
+
+}
+###

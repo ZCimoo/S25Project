@@ -1,25 +1,32 @@
 <script setup lang="ts">
-import { defineProps, computed, ref } from 'vue'
-import { getAll, type Activity } from '../models/activities'
-import { getAll as getAllUsers, type User } from '../models/users'
+import { ref, computed, onMounted } from 'vue'
+import { getAll, type Activity, getByUser } from '../models/activities'
 import { type DataListEnvelope } from '../models/dataEnvelopes'
-import { refSession } from '@/models/session'
+import { refSession, isLoggedIn } from '@/models/session'
+import { type User, getAll as getAllUsers } from '../models/users'
 
-const users = ref({} as DataListEnvelope<User>)
-getAllUsers().then((response) => {
-  users.value = response as DataListEnvelope<User>
-})
-
+const session = refSession()
 const activities = ref({} as DataListEnvelope<Activity>)
-getAll().then((response) => {
-  activities.value = response as DataListEnvelope<Activity>
+onMounted(async () => {
+  const userId = session.value.user?.userid
+  if (userId) {
+    activities.value = await getByUser(userId)
+  }
 })
+
+function orderActivities(activities: Activity[]) {
+  return activities.sort((a, b) => {
+    const dateA = new Date(a.date || 0)
+    const dateB = new Date(b.date || 0)
+    return dateB.getTime() - dateA.getTime()
+  })
+}
 </script>
 
 <template>
   <div class="section">
-    <div v-if="activities.items && activities.items.length > 0">
-      <div v-for="(activity, index) in activities.items" :key="index" class="card mb-4">
+    <div v-if="isLoggedIn()">
+      <div v-for="activity in activities.items" :key="activity.id" class="card mb-4">
         <div class="box">
           <article class="media">
             <div class="media-left">
@@ -30,7 +37,7 @@ getAll().then((response) => {
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong>{{ activity.username }}</strong>
+                  <strong>@{{ activity.username }}</strong>
                   <br />
                   <small>{{ activity.date }}</small>
                   <br />
@@ -71,24 +78,4 @@ getAll().then((response) => {
   </div>
 </template>
 
-<style scoped>
-.box {
-  width: 100%;
-}
-.level {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.level-left {
-  display: flex;
-  gap: 10px;
-}
-
-.level-item {
-  display: flex;
-  align-items: center;
-}
-</style>
+<style scoped></style>

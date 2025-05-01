@@ -11,13 +11,15 @@ export interface User {
   age: number
   gender: string
   email: string
+  pfp: string
 }
 
 export function getAll() {
   return api('users')
 }
 export function getOne(id: number) {
-  return api(`users/${id}`)
+  console.log('getOne', id)
+  return api<User[]>(`users/${id}`).then((users) => users[0])
 }
 
 export function searchUser(

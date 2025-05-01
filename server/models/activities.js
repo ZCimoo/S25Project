@@ -4,11 +4,11 @@ const { connect } = require("./supabase");
 
 const TABLE_NAME = "activities";
 
-async function getAll(limit = 30, offset = 0, sort = "id", order = "asc") {
+async function getAll(limit = 30, offset = 0, sort = "id", order = "desc") {
   const list = await connect()
     .from(TABLE_NAME)
     .select("*", { count: "estimated" })
-    .order(sort, { ascending: order === "asc" })
+    .order(sort, { ascending: order === "desc" })
     .range(offset, offset + limit - 1);
   if (list.error) {
     throw new CustomError(
@@ -34,6 +34,32 @@ async function get(id) {
     throw error;
   }
   return item;
+}
+
+async function getByUserId(
+  userId,
+  limit = 30,
+  offset = 0,
+  sort = "id",
+  order = "desc"
+) {
+  const {
+    data: items,
+    error,
+    count,
+  } = await connect()
+    .from(TABLE_NAME)
+    .select("*")
+    .eq("userid", userId)
+    .order(sort, { ascending: order === "desc" })
+    .range(offset, offset + limit - 1);
+  if (error) {
+    throw error;
+  }
+  return {
+    items,
+    total: count,
+  };
 }
 
 async function search(
@@ -127,6 +153,7 @@ function mapToDB(activity) {
 module.exports = {
   getAll,
   get,
+  getByUserId,
   search,
   create,
   update,
