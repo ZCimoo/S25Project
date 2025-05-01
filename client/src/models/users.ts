@@ -1,5 +1,5 @@
 import type { DataListEnvelope } from './dataEnvelopes'
-import users from '../data/users.json'
+import { api } from './session'
 
 export interface User {
   userId: number
@@ -14,17 +14,16 @@ export interface User {
 }
 
 export function getAll() {
-  return {
-    data: users.items,
-    total: users.items.length,
-    skip: 0,
-    limit: users.items.length,
-  } as DataListEnvelope<User>
+  return api('users')
 }
 export function getOne(id: number) {
-  return users.items.find((user: User) => user.userId === id)
+  return api(`users/${id}`)
 }
-export function getName(id: number) {
-  const user = users.items.find((user: User) => user.userId === id)
-  return user ? `${user.firstName} ${user.lastName}` : ''
+
+export function searchUser(
+  search: string,
+  page: number,
+  limit: number,
+): Promise<DataListEnvelope<User>> {
+  return api('users/search/${search}')
 }

@@ -3,11 +3,16 @@ import { RouterLink, useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { useUserSwitching } from '../models/useUserSwitching'
 import { getAll, type User } from '../models/users'
+import { type DataListEnvelope } from '../models/dataEnvelopes'
 
 const router = useRouter()
 const isDropdownActive = ref(false)
 const { switchUser, isLoggedIn, handleLogout, currentUser } = useUserSwitching()
-const users = getAll()
+const users = ref({} as DataListEnvelope<User>)
+
+getAll().then((response) => {
+  users.value = response as DataListEnvelope<User>
+})
 
 function toggleDropdown() {
   isDropdownActive.value = !isDropdownActive.value

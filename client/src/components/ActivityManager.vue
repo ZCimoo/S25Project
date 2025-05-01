@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useActivityStore } from '../models/useActivityStore'
-import { getAll, addActivity } from '../models/activities'
+import { getAll, create, type Activity } from '../models/activities'
 import ActivityForm from './ActivityForm.vue'
+import { type DataListEnvelope } from '../models/dataEnvelopes'
 import { currentUser } from '../models/useUserSwitching'
 const showForm = ref(false)
-const activities = ref(getAll())
+const activities = ref({} as DataListEnvelope<Activity>)
+
+getAll().then((response) => {
+  activities.value = response
+})
 
 const props = defineProps<{ userId?: number | null; username?: string | null }>()
 
 const displayedActivities = computed(() => {
-  if (!activities.value.data) return []
+  if (!activities.value) return []
 
   return props.userId
     ? activities.value.data.filter((activity) => activity.userId === props.userId)
@@ -34,8 +38,10 @@ const addNewActivity = (activity: {
     console.error('Current user is null. Cannot add activity.')
     return
   }
-  addActivity(activity)
-  activities.value = getAll()
+  create(activity)
+  getAll().then((response) => {
+    activities.value = response
+  })
   showForm.value = false
 }
 </script>

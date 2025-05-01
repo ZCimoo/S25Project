@@ -1,11 +1,18 @@
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
+import { defineProps, computed, ref } from 'vue'
 import { getAll, type Activity } from '../models/activities'
-import { getAll as getAllUsers, type User, getName } from '../models/users'
+import { getAll as getAllUsers, type User } from '../models/users'
+import { type DataListEnvelope } from '../models/dataEnvelopes'
 
-const users = getAllUsers()
+const users = ref({} as DataListEnvelope<User>)
+getAllUsers().then((response) => {
+  users.value = response as DataListEnvelope<User>
+})
 
-const activities = computed(() => getAll())
+const activities = ref({} as DataListEnvelope<Activity>)
+getAll().then((response) => {
+  activities.value = response as DataListEnvelope<Activity>
+})
 </script>
 
 <template>
@@ -22,7 +29,7 @@ const activities = computed(() => getAll())
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong>{{ getName(activity.userId) }}</strong>
+                  <strong>{{}}</strong>
                   <small> @{{ activity.username }}</small>
                   <br />
                   <small>{{ activity.date }}</small>
