@@ -58,9 +58,6 @@ function logoutAndRedirect() {
         <RouterLink to="/api/v1/friend-activity" class="navbar-item">
           <i class="fas fa-user-friends"></i>Friend Activity
         </RouterLink>
-        <RouterLink to="/api/v1/about" class="navbar-item">
-          <i class="fas fa-user-friends"></i>About
-        </RouterLink>
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link"><i class="fas fa-clipboard"></i>Admin</a>
