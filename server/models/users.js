@@ -96,6 +96,7 @@ async function remove(id) {
   }
   return deletedUser;
 }
+
 async function seed() {
   for (const item of data.items) {
     const insert = mapToDB(item);
@@ -132,5 +133,6 @@ module.exports = {
   create,
   update,
   remove,
+
   seed,
 };

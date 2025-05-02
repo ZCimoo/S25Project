@@ -13,14 +13,6 @@ onMounted(async () => {
     activities.value = await getByUser(userId)
   }
 })
-
-function orderActivities(activities: Activity[]) {
-  return activities.sort((a, b) => {
-    const dateA = new Date(a.date || 0)
-    const dateB = new Date(b.date || 0)
-    return dateB.getTime() - dateA.getTime()
-  })
-}
 </script>
 
 <template>

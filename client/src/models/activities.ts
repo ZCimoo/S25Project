@@ -36,6 +36,7 @@ export function create(data: Activity) {
       title: data.title,
       duration: data.duration,
       username: data.username,
+      date: data.date,
       userid: data.userid,
       type: data.type,
       location: data.location,

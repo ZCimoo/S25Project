@@ -137,6 +137,7 @@ async function seed() {
 
   return { message: "Seeded activities successfully" };
 }
+
 function mapToDB(activity) {
   return {
     id: activity.id,

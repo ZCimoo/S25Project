@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, computed, ref } from 'vue'
+import { defineProps, computed, ref, onMounted } from 'vue'
 import { getAll, type Activity } from '../models/activities'
 import { getAll as getAllUsers, type User } from '../models/users'
 import { type DataListEnvelope } from '../models/dataEnvelopes'
@@ -30,7 +30,7 @@ getAll().then((response) => {
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong>{{ activity.username }}</strong>
+                  <strong>@{{ activity.username }}</strong>
                   <br />
                   <small>{{ activity.date }}</small>
                   <br />

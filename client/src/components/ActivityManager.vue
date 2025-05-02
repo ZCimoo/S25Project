@@ -33,6 +33,9 @@ async function addNewActivity(activity: Activity) {
     }
     activity.userid = session.value.user.userid
     activity.username = session.value.user.username
+    if (!activity.date) {
+      activity.date = new Date().toISOString().split('T')[0]
+    }
 
     await create(activity)
     activities.value = await getAll()
