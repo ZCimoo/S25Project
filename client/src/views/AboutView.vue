@@ -28,7 +28,7 @@ getAllUsers().then((response) => {
         <p>{{ a.duration }}</p>
         <p>{{ a.location }}</p>
         <p>{{ a.type }}</p>
-        <p>{{ a.userId }}</p>
+        <p>{{ a.userid }}</p>
         <!-- Note that it's `userid` instead of `userId` -->
       </div>
     </div>
