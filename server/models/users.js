@@ -43,19 +43,22 @@ async function search(
   limit = 30,
   offset = 0,
   sort = "userid",
-  order = "asc"
+  order = "desc"
 ) {
-  const { data: users, error } = await BaseQuery()
-    .or(
-      `firstName.ilike.%${query}%, lastName.ilike.%${query}%, username.ilike.%${query}%`
-    )
+  const {
+    data: items,
+    error,
+    count,
+  } = await BaseQuery.or(
+    `firstname.ilike.%${query}%,lastname.ilike.%${query}%,username.ilike.%${query}%`
+  )
     .order(sort, { ascending: order === "asc" })
     .range(offset, offset + limit - 1);
   if (error) {
     throw error;
   }
   return {
-    users,
+    items,
     total: count,
   };
 }

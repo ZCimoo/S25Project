@@ -22,10 +22,6 @@ export function getOne(id: number) {
   return api<User[]>(`users/${id}`).then((users) => users[0])
 }
 
-export function searchUser(
-  search: string,
-  page: number,
-  limit: number,
-): Promise<DataListEnvelope<User>> {
-  return api(`users/search/${search}`)
+export function searchUser(searchTerm: string) {
+  return api<DataListEnvelope<User>>('users/search/${searchTerm}')
 }
